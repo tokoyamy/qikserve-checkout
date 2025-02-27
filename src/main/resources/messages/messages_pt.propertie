@@ -1,0 +1,4 @@
+checkout.success=Checkout realizado com sucesso
+checkout.error=Erro ao processar o checkout
+checkout.savings=Você economizou {0} centavos!
+product.notfound=Produto não encontrado

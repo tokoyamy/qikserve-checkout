@@ -1,0 +1,33 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: qikserve-checkout
+
+logging:
+  level:
+    root: INFO
+    com.qikserve: DEBUG
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      productService:
+        slidingWindowSize: 5
+        failureRateThreshold: 50
+        waitDurationInOpenState: 5000
+        permittedNumberOfCallsInHalfOpenState: 2
+        slowCallRateThreshold: 100
+        slowCallDurationThreshold: 2000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info"
+  endpoint:
+    health:
+      show-details: always
