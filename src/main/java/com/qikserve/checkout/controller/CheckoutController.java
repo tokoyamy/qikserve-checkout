@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/checkout")
-@Tag(name = "Checkout API", description = "Endpoints para gerenciar o checkout")
+@Tag(name = "Checkout API", description = "Endpoints to manage checkout")
 public class CheckoutController {
 
     private static final Logger logger = LoggerFactory.getLogger(CheckoutController.class);
@@ -31,17 +31,17 @@ public class CheckoutController {
         this.checkoutService = checkoutService;
     }
 
-    @Operation(summary = "Adicionar itens ao carrinho e calcular total")
+    @Operation(summary = "Add items to cart and calculate total")
     @PostMapping
     public ResponseEntity<CheckoutResponseDTO> processCheckout(@RequestBody CartDTO cartDTO) {
-        logger.info("Recebendo pedido de checkout para {} itens", cartDTO.getItems().size());
+        logger.info("Receiving checkout request for {} items", cartDTO.getItems().size());
 
         Cart cart = new Cart();
         for (CartItemDTO itemDTO : cartDTO.getItems()) {
-            logger.info("Processando item: {}", itemDTO.getProductId());
+            logger.info("Processing item: {}", itemDTO.getProductId());
             Product product = productService.getProductById(itemDTO.getProductId());
             if (product == null) {
-                logger.error("Produto não encontrado: {}", itemDTO.getProductId());
+                logger.error("Product not found: {}", itemDTO.getProductId());
                 return ResponseEntity.badRequest().body(new CheckoutResponseDTO(0, 0));
             }
             cart.addItem(new CartItem(product, itemDTO.getQuantity()));
@@ -59,7 +59,7 @@ public class CheckoutController {
                     return originalPrice - discountedPrice;
                 }).sum();
 
-        logger.info("Checkout finalizado. Total: {} cents, Economia: {} cents", total, savings);
+        logger.info("Checkout completed. Total: {} cents, Economy: {} cents", total, savings);
         return ResponseEntity.ok(new CheckoutResponseDTO(total, savings));
     }
 

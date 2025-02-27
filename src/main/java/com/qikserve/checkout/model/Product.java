@@ -10,7 +10,7 @@ import java.util.List;
 public class Product {
     private String id;
     private String name;
-    private int price; // Representado em centavos
+    private int price; 
     private List<Promotion> promotions;
 
     public Product() {}

@@ -23,20 +23,20 @@ public class CheckoutService {
         for (Promotion promotion : item.getProduct().getPromotions()) {
             switch (promotion.getType()) {
                 case "BUY_X_GET_Y_FREE":
-                    if (promotion.getRequiredQty() > 0) { // Evita divisão por zero
+                    if (promotion.getRequiredQty() > 0) { 
                         int freeItems = (quantity / promotion.getRequiredQty()) * promotion.getFreeQty();
-                        quantity -= freeItems; // Remove os itens grátis do total
+                        quantity -= freeItems; 
                     }
                     break;
                 case "QTY_BASED_PRICE_OVERRIDE":
-                    if (promotion.getRequiredQty() > 0) { // Evita divisão por zero
+                    if (promotion.getRequiredQty() > 0) { 
                         int bundles = quantity / promotion.getRequiredQty();
                         int remaining = quantity % promotion.getRequiredQty();
                         price = (bundles * promotion.getPrice()) + (remaining * price);
                     }
                     break;
                 case "FLAT_PERCENT":
-                    if (promotion.getAmount() > 0) { // Evita divisão por zero
+                    if (promotion.getAmount() > 0) { 
                         price = price - (price * promotion.getAmount() / 100);
                     }
                     break;

@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/products")
-@Tag(name = "Products API", description = "Endpoints para gerenciar produtos")
+@Tag(name = "Products API", description = "Endpoints to manage products")
 public class ProductController {
 
     private final ProductService productService;
@@ -20,13 +20,13 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @Operation(summary = "Obter todos os produtos")
+    @Operation(summary = "Get all products")
     @GetMapping
     public ResponseEntity<List<Product>> getAllProducts() {
         return ResponseEntity.ok(productService.getAllProducts());
     }
 
-    @Operation(summary = "Obter um produto por ID")
+    @Operation(summary = "Get a product by ID")
     @GetMapping("/{productId}")
     public ResponseEntity<Product> getProductById(@PathVariable String productId) {
         return ResponseEntity.ok(productService.getProductById(productId));
