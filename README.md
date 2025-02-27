@@ -69,13 +69,21 @@ bash start.sh
 Request:
 
 ```bash
-curl -X POST http://localhost:8080/checkout \
-    -H "Content-Type: application/json" \
-    -d '{
+curl --location 'http://localhost:8080/checkout' \
+--header 'Content-Type: application/json' \
+--data '{
           "items": [
             {
               "productId": "PWWe3w1SDU",
+              "quantity": 3
+            },
+            {
+              "productId": "Dwt5F7KAhi",
               "quantity": 2
+            },
+            {
+              "productId": "C8GDyLrHJb",
+              "quantity": 1
             }
           ]
         }'
@@ -86,8 +94,8 @@ curl -X POST http://localhost:8080/checkout \
 
 ```json
 {
-    "total": 1998,
-    "savings": 999
+    "total": 5645,
+    "savings": 49
 }
 
 ```
