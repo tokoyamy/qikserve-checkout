@@ -36,7 +36,8 @@ cd qikserve-checkout
 
 ### Launch WireMock
 
-run the startup scrip
+run the startup script
+Link to wiremock: https://cdn-dev.preoday.com/test/mock-api.zip
 
 ```bash
 bash start.sh
